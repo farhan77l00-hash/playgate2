@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLAYGATE | متجر الألعاب الرقمية المرخصة</title>
+<meta name="description" content="PLAYGATE: ألعاب ومنتجات رقمية مرخصة بتسليم آمن بعد التحقق من الدفع.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>:root{--bg:#05060a;--bg2:#0b0e17;--card:#0e1320;--line:#1a2440;--blue:#1f6bff;--neon:#38b6ff;--text:#e8eefc;--mut:#8b98b8;--ok:#27d98a;--warn:#ffb84a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+:focus-visible{outline:2px solid var(--neon);outline-offset:2px}
+header{position:sticky;top:0;z-index:20;background:rgba(5,6,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:14px;height:64px}
+.logo{font-weight:900;font-size:26px;letter-spacing:3px;color:#fff;text-shadow:0 0 14px var(--blue),0 0 32px var(--blue)}
+.logo b{color:var(--neon)}
+.search{flex:1;max-width:420px;margin-inline-start:auto}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:9px 14px;margin:0}
+.search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,107,255,.25);outline:0}
+.btn{background:var(--blue);border:0;border-radius:12px;padding:10px 18px;font-weight:700;cursor:pointer;color:#fff;transition:.25s}
+.btn:hover{box-shadow:0 0 22px rgba(31,107,255,.7);transform:translateY(-1px)}
+.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;transform:none}
+.btn.ghost{background:transparent;border:1px solid var(--line)}.btn.ghost:hover{border-color:var(--neon)}
+.btn.sm{padding:6px 12px;font-size:14px}.btn.danger{background:#d63a4a}
+.cartbtn{position:relative}.cartbtn span{position:absolute;top:-6px;inset-inline-end:-6px;background:var(--neon);color:#001;border-radius:99px;font-size:12px;min-width:20px;height:20px;display:grid;place-items:center;font-weight:800}
+.hero{padding:84px 0 56px;text-align:center;background:radial-gradient(ellipse at 50% 0,rgba(31,107,255,.35),transparent 60%)}
+.hero h1{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.2;text-shadow:0 0 30px rgba(31,107,255,.7);animation:rise .9s ease both}
+.hero p{color:var(--mut);margin:14px 0 6px;font-size:18px}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
+.chip{white-space:nowrap;padding:7px 16px;border:1px solid var(--line);border-radius:99px;background:var(--bg2);cursor:pointer;transition:.2s}
+.chip:hover,.chip.on{border-color:var(--neon);color:var(--neon);box-shadow:0 0 14px rgba(56,182,255,.3)}
+section{padding:34px 0}
+h2{font-size:26px;margin-bottom:18px;padding-inline-start:12px;border-inline-start:4px solid var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.25s;cursor:pointer}
+.card:hover{border-color:var(--blue);box-shadow:0 0 26px rgba(31,107,255,.3);transform:translateY(-3px)}
+.thumb{aspect-ratio:4/3;background:linear-gradient(135deg,#0a1a4a,#1f6bff 60%,#38b6ff);display:grid;place-items:center;font-size:44px;font-weight:900;position:relative}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:10px;inset-inline-start:10px;background:var(--warn);color:#201400;font-size:12px;font-weight:800;padding:2px 10px;border-radius:99px;z-index:1}
+.cb{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cb p{color:var(--mut);font-size:14px;flex:1}
+.price{font-weight:800;color:var(--neon);font-size:18px}.price s{color:var(--mut);font-weight:400;font-size:14px;margin-inline-start:6px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;place-items:center;z-index:50;padding:16px}
+.modal.open{display:grid}
+.box{background:var(--bg2);border:1px solid var(--blue);border-radius:18px;padding:22px;width:100%;max-width:520px;max-height:90vh;overflow:auto;box-shadow:0 0 40px rgba(31,107,255,.35)}
+.drawer{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(400px,100%);background:var(--bg2);border-inline-start:1px solid var(--blue);z-index:60;transform:translateX(105%);transition:.3s;padding:18px;display:flex;flex-direction:column;gap:12px}
+[dir=rtl] .drawer{transform:translateX(-105%)}
+.drawer.open,[dir=rtl] .drawer.open{transform:none}
+.items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.qty{display:flex;align-items:center;gap:8px}.qty button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--bg);cursor:pointer}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:4px 0 10px}
+label{font-size:14px;color:var(--mut)}
+.notice{background:rgba(255,184,74,.1);border:1px solid var(--warn);border-radius:10px;padding:10px;font-size:14px;margin:8px 0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--blue);padding:10px 20px;border-radius:12px;z-index:99;box-shadow:0 0 24px var(--blue)}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mut);text-align:center;font-size:14px;margin-top:30px}
+.wa{position:fixed;bottom:18px;inset-inline-start:18px;background:#25d366;color:#062;font-weight:800;border-radius:99px;padding:11px 18px;z-index:30;box-shadow:0 0 20px rgba(37,211,102,.5)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+.scroll{overflow-x:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}.stat b{display:block;font-size:26px;color:var(--neon)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:600px){.search{display:none}.hero{padding:56px 0 36px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="/">PLAY<b>GATE</b></a>
+  <div class="search"><input id="q" type="search" placeholder="ابحث عن لعبة…" aria-label="بحث"></div>
+  <button class="btn ghost sm" id="trackBtn">تتبع طلبك</button>
+  <button class="btn cartbtn" id="cartBtn" aria-label="السلة">السلة<span id="cartCount">0</span></button>
+</div></header>
+
+<div class="hero"><div class="wrap"><h1>عالم ألعابك أقرب مما تتخيل</h1><p>ألعاب ومنتجات رقمية مرخصة، وتسليم بعد التحقق من الدفع.</p></div></div>
+
+<main class="wrap">
+  <div class="cats" id="cats"></div>
+  <section><h2>الألعاب المميزة</h2><div class="grid" id="featured"></div></section>
+  <section><h2>العروض</h2><div class="grid" id="offers"></div></section>
+  <section><h2>أحدث المنتجات</h2><div class="grid" id="latest"></div></section>
+</main>
+<footer><div class="wrap">© PLAYGATE — جميع المنتجات مرخصة وتُسلَّم بعد تأكيد الدفع.</div></footer>
+<a class="wa" id="wa" target="_blank" rel="noopener">واتساب</a>
+
+<aside class="drawer" id="cartDrawer" aria-label="سلة المشتريات">
+  <div class="row"><h2 style="margin:0">سلة المشتريات</h2><button class="btn ghost sm" id="closeCart">إغلاق</button></div>
+  <div class="items" id="cartItems"></div>
+  <div class="row"><b>الإجمالي</b><b class="price" id="total"></b></div>
+  <button class="btn" id="checkout">إتمام الطلب</button>
+</aside>
+
+<div class="modal" id="pModal"><div class="box"><div id="pBody"></div><button class="btn ghost sm" data-close style="margin-top:12px">إغلاق</button></div></div>
+<div class="modal" id="coModal"><form class="box" id="coForm">
+  <h2>بيانات الطلب</h2>
+  <label for="cName">الاسم</label><input id="cName" required minlength="2" autocomplete="name">
+  <label for="cPhone">رقم الجوال (واتساب)</label><input id="cPhone" required inputmode="tel" pattern="[0-9+ ]{9,15}" autocomplete="tel">
+  <div class="notice">لا نطلب بيانات بطاقات أو كلمات مرور بنكية.</div>
+  <button class="btn" style="width:100%">تأكيد الطلب</button>
+</form></div>
+<div class="modal" id="doneModal"><div class="box"><div id="doneBody"></div><button class="btn ghost sm" data-close style="margin-top:12px">إغلاق</button></div></div>
+<div class="modal" id="trModal"><form class="box" id="trackForm">
+  <h2>تتبع الطلب</h2>
+  <label for="tNo">رقم الطلب</label><input id="tNo" required>
+  <label for="tPhone">رقم الجوال</label><input id="tPhone" required>
+  <button class="btn">عرض الحالة</button><p id="trackRes" style="margin-top:10px"></p>
+  <button type="button" class="btn ghost sm" data-close>إغلاق</button>
+</form></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.min.js"></script>
+<script>// ضع بيانات مشروعك من Supabase > Project Settings > API
+// المفتاح anon آمن للنشر العلني لأن الحماية تتم عبر RLS. لا تضع service_role هنا أبداً.
+window.PG_CONFIG = {
+  SUPABASE_URL: 'https://yixpldgxiwihcenaiyob.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_P7Qfz6lM7Ml9JmXQpoyOEA_HdXzP4Mi',
+  WHATSAPP: '966500000000'   // يُستبدل بقيمة جدول settings عند توفرها
+};
+
+const CFG = window.PG_CONFIG;
+const DEMO = !CFG.SUPABASE_URL || CFG.SUPABASE_URL.startsWith('YOUR');
+const sb = DEMO ? null : supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => new Intl.NumberFormat('ar-SA', {style:'currency', currency:'SAR'}).format(n);
+const STATUS = {pending_payment:'بانتظار الدفع', pending_verification:'بانتظار التحقق', payment_confirmed:'تم تأكيد الدفع', completed:'مكتمل'};
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)}
+
+const DEMO_PRODUCTS = [
+ {id:'d1',name:'سيف الظلال',description:'مغامرة أكشن بعالم مفتوح',details:'كود تفعيل رقمي مرخص. يصلك بعد التحقق من الدفع عبر واتساب.',price:199,category:'أكشن',featured:true},
+ {id:'d2',name:'سباق النيون',description:'سباقات سيارات مستقبلية',details:'كود تفعيل رقمي مرخص لمنصة PC.',price:149,old_price:199,category:'سباقات',featured:true,is_offer:true},
+ {id:'d3',name:'مدينة الأبراج',description:'لعبة استراتيجية وبناء',details:'مفتاح تفعيل رسمي.',price:89,category:'استراتيجية'},
+ {id:'d4',name:'بطاقة شحن 100 ريال',description:'رصيد متجر ألعاب',details:'بطاقة رقمية مرخصة تُسلَّم كرمز.',price:100,category:'بطاقات'}];
+let products = [], cart = JSON.parse(localStorage.getItem('pg_cart') || '[]'), cat = 'الكل', settings = {whatsapp: CFG.WHATSAPP, bank_info: ''};
+
+async function load() {
+  if (DEMO) products = DEMO_PRODUCTS;
+  else {
+    const [p, s] = await Promise.all([sb.from('products').select('*').eq('active', true).order('created_at', {ascending:false}), sb.from('settings').select('*')]);
+    products = p.data || []; (s.data || []).forEach(r => settings[r.key] = r.value);
+  }
+  $('#wa').href = 'https://wa.me/' + settings.whatsapp;
+  render();
+}
+const card = p => `<article class="card" data-id="${esc(p.id)}"><div class="thumb">${p.image_url ? `<img src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy">` : esc(p.name[0])}${p.is_offer ? '<span class="tag">عرض</span>' : ''}</div>
+ <div class="cb"><h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><div class="row"><span class="price">${money(p.price)}${p.old_price ? `<s>${money(p.old_price)}</s>` : ''}</span><button class="btn sm" data-add="${esc(p.id)}">أضف للسلة</button></div></div></article>`;
+function render() {
+  const q = $('#q').value.trim().toLowerCase();
+  const list = products.filter(p => (cat === 'الكل' || p.category === cat) && (!q || (p.name + (p.description || '')).toLowerCase().includes(q)));
+  const cats = ['الكل', ...new Set(products.map(p => p.category).filter(Boolean))];
+  $('#cats').innerHTML = cats.map(c => `<button class="chip ${c === cat ? 'on' : ''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  $('#featured').innerHTML = list.filter(p => p.featured).map(card).join('') || '<p>لا توجد ألعاب مميزة حالياً.</p>';
+  $('#offers').innerHTML = list.filter(p => p.is_offer).map(card).join('') || '<p>لا توجد عروض حالياً.</p>';
+  $('#latest').innerHTML = list.map(card).join('') || '<p>لا توجد نتائج مطابقة.</p>';
+  renderCart();
+}
+const save = () => localStorage.setItem('pg_cart', JSON.stringify(cart));
+function add(id) { const i = cart.find(x => x.id === id); i ? i.qty = Math.min(10, i.qty + 1) : cart.push({id, qty:1}); save(); renderCart(); toast('أُضيفت إلى السلة'); }
+function renderCart() {
+  const rows = cart.map(c => ({...c, p: products.find(p => p.id === c.id)})).filter(r => r.p);
+  const total = rows.reduce((s, r) => s + r.p.price * r.qty, 0);
+  $('#cartCount').textContent = rows.reduce((s, r) => s + r.qty, 0);
+  $('#cartItems').innerHTML = rows.map(r => `<div class="item"><b>${esc(r.p.name)}</b><div class="row"><div class="qty"><button data-q="${esc(r.id)}" data-d="-1">−</button>${r.qty}<button data-q="${esc(r.id)}" data-d="1">+</button></div><span class="price">${money(r.p.price * r.qty)}</span><button class="btn danger sm" data-del="${esc(r.id)}">حذف</button></div></div>`).join('') || '<p>السلة فارغة.</p>';
+  $('#total').textContent = money(total);
+  $('#checkout').disabled = !rows.length;
+}
+function openProduct(id) {
+  const p = products.find(x => x.id === id); if (!p) return;
+  $('#pBody').innerHTML = `<h2>${esc(p.name)}</h2><p>${esc(p.description)}</p><h3 style="margin-top:12px">التفاصيل وطريقة الاستلام</h3><p>${esc(p.details)}</p>
+   <div class="notice">منتج رقمي مرخص: يُسلَّم بعد التحقق من الدفع فقط.</div><div class="row"><span class="price">${money(p.price)}</span><button class="btn" data-add="${esc(p.id)}">أضف للسلة</button></div>`;
+  $('#pModal').classList.add('open');
+}
+async function placeOrder(e) {
+  e.preventDefault();
+  const name = $('#cName').value.trim(), phone = $('#cPhone').value.replace(/\D/g, '');
+  let no, total;
+  if (DEMO) { no = 'PG-DEMO-' + Math.random().toString(36).slice(2, 7).toUpperCase(); total = cart.reduce((s, c) => s + (products.find(p => p.id === c.id)?.price || 0) * c.qty, 0); }
+  else {
+    const {data, error} = await sb.rpc('create_order', {p_name: name, p_phone: phone, p_items: cart.map(c => ({id: c.id, qty: c.qty}))});
+    if (error) return toast(error.message);
+    no = data[0].order_no; total = data[0].total;
+  }
+  cart = []; save(); renderCart(); $('#cartDrawer').classList.remove('open'); $('#coModal').classList.remove('open');
+  const msg = encodeURIComponent(`مرحباً PLAYGATE، رقم طلبي: ${no}\nالإجمالي: ${total} ريال\nأرغب بإتمام الدفع.`);
+  $('#doneBody').innerHTML = `<h2>تم إنشاء طلبك</h2><p>رقم الطلب: <b class="price">${esc(no)}</b></p><p>الإجمالي: <b>${money(total)}</b></p><p>الحالة: بانتظار الدفع</p>
+   ${settings.bank_info ? `<div class="notice">بيانات التحويل البنكي:<br>${esc(settings.bank_info)}</div>` : ''}
+   <div class="notice">صورة التحويل لا تُعد إثباتاً نهائياً. يُعتمد الطلب بعد تحقق الإدارة من وصول المبلغ، ثم يُسلَّم المنتج.</div>
+   <a class="btn" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://wa.me/${esc(settings.whatsapp)}?text=${msg}">تواصل عبر واتساب</a>`;
+  $('#doneModal').classList.add('open');
+}
+async function track(e) {
+  e.preventDefault();
+  if (DEMO) return $('#trackRes').textContent = 'وضع التجربة: لا توجد قاعدة بيانات.';
+  const {data} = await sb.rpc('track_order', {p_no: $('#tNo').value.trim(), p_phone: $('#tPhone').value.replace(/\D/g, '')});
+  $('#trackRes').textContent = data ? 'حالة الطلب: ' + STATUS[data] : 'لم يتم العثور على الطلب.';
+}
+document.addEventListener('click', e => {
+  const t = e.target;
+  if (t.dataset.add) { e.stopPropagation(); add(t.dataset.add); return; }
+  if (t.dataset.cat) { cat = t.dataset.cat; render(); return; }
+  if (t.dataset.q) { const i = cart.find(x => x.id === t.dataset.q); i.qty = Math.max(1, Math.min(10, i.qty + +t.dataset.d)); save(); renderCart(); return; }
+  if (t.dataset.del) { cart = cart.filter(x => x.id !== t.dataset.del); save(); renderCart(); return; }
+  if (t.dataset.close) { t.closest('.modal').classList.remove('open'); return; }
+  if (t.classList.contains('modal')) { t.classList.remove('open'); return; }
+  const c = t.closest('.card'); if (c) openProduct(c.dataset.id);
+});
+$('#q').addEventListener('input', render);
+$('#cartBtn').onclick = () => $('#cartDrawer').classList.add('open');
+$('#closeCart').onclick = () => $('#cartDrawer').classList.remove('open');
+$('#checkout').onclick = () => $('#coModal').classList.add('open');
+$('#coForm').onsubmit = placeOrder; $('#trackForm').onsubmit = track;
+$('#trackBtn').onclick = () => $('#trModal').classList.add('open');
+load();
+</script>
+</body></html>
